@@ -8,7 +8,7 @@ import tornado.template
 
 consumer = KafkaConsumer('output',
                          group_id='realTimeViz',
-                         bootstrap_servers=['localhost:9092'])
+                         bootstrap_servers=['kafka01.app.scienaptic.com:9092','kafka02.app.scienaptic.com:9092','kafka03.app.scienaptic.com:9092'])
 
 
 def get_graph_data():
