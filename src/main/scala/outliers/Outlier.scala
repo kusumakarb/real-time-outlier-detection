@@ -22,7 +22,6 @@ object Outlier extends Serializable {
   def apply(data: DataFrame, inputColName: String, outputColName: String, meanCoeff: Double, stdCoeff: Double) = {
     require(data.columns.contains(inputColName), "Column name not valid")
 
-    // TODO : Put logic to calculate mean and stdDev
     val mean: Double = 10.0
     val stdDev: Double = 2.0
 
