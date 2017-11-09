@@ -1,4 +1,4 @@
-package barclays
+package outliers
 
 import org.apache.spark.sql._
 import org.apache.spark.sql.functions._

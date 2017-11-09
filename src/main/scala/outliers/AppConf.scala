@@ -1,4 +1,4 @@
-package barclays
+package outliers
 
 object AppConf {
 

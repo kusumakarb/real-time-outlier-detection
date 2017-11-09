@@ -1,4 +1,4 @@
-package barclays;
+package outliers;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.slf4j.Logger;

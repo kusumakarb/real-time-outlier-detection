@@ -1,4 +1,4 @@
-package barclays
+package outliers
 
 import java.io.InputStream
 import java.util.Properties
