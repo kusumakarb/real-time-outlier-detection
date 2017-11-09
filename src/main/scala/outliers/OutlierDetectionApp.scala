@@ -20,6 +20,7 @@ object OutlierDetectionApp extends Serializable{
 
   def main(args: Array[String]): Unit = {
 
+
     val spark = SparkSession
       .builder()
       .appName(AppConf.APP_NAME)
@@ -79,6 +80,15 @@ object OutlierDetectionApp extends Serializable{
       }
     })
 
+    val schemaString = "unique_transact_id card_num processing_flag trans_amt trans_time card_type merchant_key mcc_desc " +
+      "category_name city zip chrgbck_amt chargeback_cat chargeback_res"
+
+
+    val fields = schemaString.split(" ")
+      .map(fieldName => StructField(fieldName, StringType, nullable = true))
+
+    val schema = StructType(fields)
+
 
     import spark.implicits._
 
@@ -95,14 +105,6 @@ object OutlierDetectionApp extends Serializable{
 
 
     // Deserialize data to the original format
-    val schemaString = "unique_transact_id card_num processing_flag trans_amt trans_time card_type merchant_key mcc_desc " +
-      "category_name city zip chrgbck_amt chargeback_cat chargeback_res"
-
-
-    val fields = schemaString.split(" ")
-      .map(fieldName => StructField(fieldName, StringType, nullable = true))
-
-    val schema = StructType(fields)
 
     val df: DataFrame = ds1.selectExpr("cast (value as string) as json")
       .select(from_json($"json", schema).as("data"))
