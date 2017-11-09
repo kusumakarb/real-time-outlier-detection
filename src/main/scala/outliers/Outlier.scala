@@ -24,7 +24,7 @@ object Outlier extends Serializable {
 
     // TODO : Put logic to calculate mean and stdDev
     val mean: Double = 10.0
-    val stdDev: Double = 1.5
+    val stdDev: Double = 2.0
 
     val threshold = meanCoeff * mean + stdCoeff * stdDev
 

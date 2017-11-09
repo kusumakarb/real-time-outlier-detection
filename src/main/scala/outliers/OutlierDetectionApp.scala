@@ -98,7 +98,6 @@ object OutlierDetectionApp extends Serializable{
       .format("kafka")
       .option("kafka.bootstrap.servers", AppConf.KAFKA_SERVER)
       .option("subscribe", AppConf.INPUT_TOPIC)
-      .option("failOnDataLoss", "false")
       .option("startingOffsets", "latest") // equivalent of auto.offset.reset which is not allowed here
       .option("maxOffsetsPerTrigger", 10000)
       .load()
@@ -114,9 +113,9 @@ object OutlierDetectionApp extends Serializable{
 
 
     // Outlier logic
-    val outlierUpperWarning = Outlier(df, "trans_amt", "Upper_Warning", 3.0, 5.5)
+    val outlierUpperWarning = Outlier(df, "trans_amt", "Upper_Warning", 7.0, 5.5)
     val predictedDf1: DataFrame = outlierUpperWarning.predict(df)
-    val outlierUpperAction = Outlier(predictedDf1, "trans_amt", "Upper_Action", 4.0, 6.5)
+    val outlierUpperAction = Outlier(predictedDf1, "trans_amt", "Upper_Action", 10.0, 7)
     val predictedDf2 = outlierUpperAction.predict(predictedDf1)
 
 
